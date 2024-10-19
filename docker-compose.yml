@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    container_name: workout_backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./db:/db  # Mount the local ./db directory to the container's /db directory
+
+  frontend:
+    build: ./frontend
+    container_name: workout_frontend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - backend
